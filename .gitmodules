@@ -1,0 +1,9 @@
+[submodule "Macros/submodules/OOOCode"]
+	path = Macros/submodules/OOOCode
+	url = https://github.com/pghalliday/OOOCode.git
+[submodule "Macros/submodules/Log"]
+	path = Macros/submodules/Log
+	url = https://github.com/pghalliday/OOOCode-Log.git
+[submodule "Macros/submodules/UnitTest"]
+	path = Macros/submodules/UnitTest
+	url = https://github.com/pghalliday/OOOCode-UnitTest.git
