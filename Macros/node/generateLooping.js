@@ -1,6 +1,7 @@
 var fs = require('fs');
 
-var MAX_ARGUMENTS = 100;
+var MAX_ARGUMENTS = 10;
+var MAX_ITERATIONS = 50;
 var FILE = '../src/OOOLooping.h';
 
 // OOOForEach
@@ -11,15 +12,25 @@ contents += '\n';
 contents += '#include "OOOEmptyArguments.h"\n';
 contents += '#include "OOOPastingAndQuoting.h"\n';
 contents += '\n';
-contents += '#define OOOForEach' + (MAX_ARGUMENTS - 1) + '_0(MACRO, ARG, ARGS...) MACRO(ARG)\n';
-contents += '#define OOOForEach' + (MAX_ARGUMENTS - 1) + '_1(MACRO, ARGS...)\n';
-contents += '\n';
-for (var i = MAX_ARGUMENTS - 1; i > 0; i--) {
-  contents += '#define OOOForEach' + (i - 1) + '_0(MACRO, ARG, ARGS...) MACRO(ARG) OOOPaste(OOOForEach' + i + '_, OOOIsEmpty(ARGS))(MACRO, ARGS)\n';
-  contents += '#define OOOForEach' + (i - 1) + '_1(MACRO, ARGS...)\n';
+
+for (var argumentCount = 1; argumentCount <= MAX_ARGUMENTS; argumentCount++) {
+  var args = '';
+  for (var argument = 0; argument < argumentCount; argument++) {
+    if (argument > 0) {
+      args += ', ';
+    }
+    args += 'ARG' + argument + ' \\\n';
+  }
+  contents += '#define OOOForEach' + argumentCount + '_' + (MAX_ITERATIONS - 1) + '_0(MACRO, ' + args + ', ARGS...) MACRO(' + args + ')\n';
+  contents += '#define OOOForEach' + argumentCount + '_' + (MAX_ITERATIONS - 1) + '_1(MACRO, ARGS...)\n';
   contents += '\n';
-} 
-contents += '#define OOOForEach(MACRO, ARGS...) OOOPaste(OOOForEach0_, OOOIsEmpty(ARGS))(MACRO, ARGS)\n';
+  for (var iteration = MAX_ITERATIONS - 1; iteration > 0; iteration--) {
+    contents += '#define OOOForEach' + argumentCount + '_' + (iteration - 1) + '_0(MACRO, ' + args + ', ARGS...) MACRO(' + args + ') OOOPaste(OOOForEach' + argumentCount + '_' + iteration + '_, OOOIsEmpty(ARGS))(MACRO, ARGS)\n';
+    contents += '#define OOOForEach' + argumentCount + '_' + (iteration - 1) + '_1(MACRO, ARGS...)\n';
+    contents += '\n';
+  }   
+}
+contents += '#define OOOForEach(MACRO, ARG_COUNT, ARGS...) OOOPaste(OOOPaste(OOOPaste(OOOForEach, ARG_COUNT), _0_), OOOIsEmpty(ARGS))(MACRO, ARGS)\n';
 contents += '\n';
 contents += '#endif\n';
 
@@ -28,6 +39,6 @@ fs.writeFile(FILE, contents, function(error) {
   if (error) {
     console.log(error);
   } else {
-    console.log(contents);
+    console.log('done');
   }
 });

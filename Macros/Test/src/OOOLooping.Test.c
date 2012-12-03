@@ -6,7 +6,7 @@
 
 OOOTest(OOOLooping)
 {
-	char * szTest = OOOForEach(OOOQuote, hello, this, is, a, test);
+	char * szTest = OOOForEach(OOOQuote, 1, hello, this, is, a, test);
 	if (O_strcmp(TEST, szTest) != 0)
 	{
 		OOOError("Expected: %s: Received: %s", TEST, szTest);
