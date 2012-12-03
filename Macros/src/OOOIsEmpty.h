@@ -1,5 +1,5 @@
-#ifndef OOOEmptyArguments_H
-#define OOOEmptyArguments_H
+#ifndef OOOIsEmpty_H
+#define OOOIsEmpty_H
 
 /*
  * This stuff is derived directly from the following article by Jens Gustedt (June 8, 2010)
@@ -12,9 +12,9 @@
  * if a variadic argument list is empty or not. If the list is empty then it
  * expands to 1, if it is not then it will expand to 0
  *
- * This macro is limited to checking up to 15 arguments - if used to check an
+ * This macro is limited to checking up to 120 arguments - if used to check an
  * argument list longer than this it will expand to something sort of undefined
- * (actually the 16th argument which in this context is undefined)
+ * (actually the 121st argument which in this context is undefined)
  *
  * The macro works by checking if the following construct expands to contain a comma...
  *

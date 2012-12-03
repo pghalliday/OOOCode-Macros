@@ -1,3 +1,4 @@
-#include "OOOEmptyArguments.Test.h"
-#include "OOOPastingAndQuoting.Test.h"
-#include "OOOLooping.Test.h"
+#include "OOOIsEmpty.Test.h"
+#include "OOOQuote.Test.h"
+#include "OOOPaste.Test.h"
+#include "OOOForEach.Test.h"

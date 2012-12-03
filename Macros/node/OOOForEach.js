@@ -2,12 +2,12 @@ var fs = require('fs');
 
 var MAX_ARGUMENTS = 10;
 var MAX_ITERATIONS = 50;
-var FILE = '../src/OOOLooping.h';
+var FILE = __dirname + '/../src/OOOForEach.h';
 
 // OOOForEach
 var contents = '';
-contents += '#ifndef OOOLooping_H\n';
-contents += '#define OOOLooping_H\n';
+contents += '#ifndef OOOForEach_H\n';
+contents += '#define OOOForEach_H\n';
 contents += '\n';
 contents += '#include "OOOEmptyArguments.h"\n';
 contents += '#include "OOOPastingAndQuoting.h"\n';

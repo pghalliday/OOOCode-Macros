@@ -1,11 +1,12 @@
 #include "OOOUnitTestDefines.h"
-#include "OOOLooping.h"
-#include "OOOPastingAndQuoting.h"
+#include "OOOForEach.h"
+#include "OOOPaste.h"
+#include "OOOQuote.h"
 
 #define TEST_1 "hellothisisatest!"
 #define TEST_2 "hellothis isa test!"
 
-OOOTest(OOOLooping)
+OOOTest(OOOForEach)
 {
 	char * szTest;
 

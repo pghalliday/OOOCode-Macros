@@ -1,8 +1,8 @@
-#ifndef OOOLooping_H
-#define OOOLooping_H
+#ifndef OOOForEach_H
+#define OOOForEach_H
 
-#include "OOOEmptyArguments.h"
-#include "OOOPastingAndQuoting.h"
+#include "OOOPaste.h"
+#include "OOOIsEmpty.h"
 
 #define OOOForEach1_49_0(MACRO, ARG0 \
 , ARGS...) MACRO(ARG0 \

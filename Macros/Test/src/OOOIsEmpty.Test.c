@@ -1,7 +1,7 @@
 #include "OOOUnitTestDefines.h"
-#include "OOOEmptyArguments.h"
+#include "OOOIsEmpty.h"
 
-OOOTest(OOOEmptyArguments)
+OOOTest(OOOIsEmpty)
 {
 	OOOCheck(OOOIsEmpty() == 1);
 	OOOCheck(OOOIsEmpty(hello) == 0);
