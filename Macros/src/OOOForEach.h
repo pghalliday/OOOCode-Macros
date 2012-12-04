@@ -1,8 +1,14 @@
+/*
+ * NB. Generated File
+ * To regenerate run...
+ * node ../node/OOOForEach.js
+ */
+
 #ifndef OOOForEach_H
 #define OOOForEach_H
 
-#include "OOOPaste.h"
-#include "OOOIsEmpty.h"
+#include "OOOEmptyArguments.h"
+#include "OOOPastingAndQuoting.h"
 
 #define OOOForEach1_49_0(MACRO, ARG0 \
 , ARGS...) MACRO(ARG0 \

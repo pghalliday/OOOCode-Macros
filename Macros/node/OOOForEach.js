@@ -4,8 +4,13 @@ var MAX_ARGUMENTS = 10;
 var MAX_ITERATIONS = 50;
 var FILE = __dirname + '/../src/OOOForEach.h';
 
-// OOOForEach
 var contents = '';
+contents += '/*\n';
+contents += ' * NB. Generated File\n';
+contents += ' * To regenerate run...\n';
+contents += ' * node ../node/OOOForEach.js\n';
+contents += ' */\n';
+contents += '\n';
 contents += '#ifndef OOOForEach_H\n';
 contents += '#define OOOForEach_H\n';
 contents += '\n';
