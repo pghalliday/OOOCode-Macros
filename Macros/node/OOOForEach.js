@@ -26,11 +26,11 @@ for (var argumentCount = 1; argumentCount <= MAX_ARGUMENTS; argumentCount++) {
     }
     args += 'ARG' + argument + ' \\\n';
   }
-  contents += '#define OOOForEach' + argumentCount + '_' + (MAX_ITERATIONS - 1) + '_0(MACRO, ' + args + ', ARGS...) MACRO(' + (MAX_ITERATIONS - 1) + ', ' + args + ')\n';
+  contents += '#define OOOForEach' + argumentCount + '_' + (MAX_ITERATIONS - 1) + '_0(MACRO, ' + args + ', ARGS...) MACRO(' + ((MAX_ITERATIONS - 1) ? 0 : 1) + ', OOOIsEmpty(ARGS), ' + (MAX_ITERATIONS - 1) + ', ' + args + ')\n';
   contents += '#define OOOForEach' + argumentCount + '_' + (MAX_ITERATIONS - 1) + '_1(MACRO, ARGS...)\n';
   contents += '\n';
   for (var iteration = MAX_ITERATIONS - 1; iteration > 0; iteration--) {
-    contents += '#define OOOForEach' + argumentCount + '_' + (iteration - 1) + '_0(MACRO, ' + args + ', ARGS...) MACRO(' + (iteration - 1) + ', ' + args + ') OOOPaste(OOOForEach' + argumentCount + '_' + iteration + '_, OOOIsEmpty(ARGS))(MACRO, ARGS)\n';
+    contents += '#define OOOForEach' + argumentCount + '_' + (iteration - 1) + '_0(MACRO, ' + args + ', ARGS...) MACRO(' + ((iteration - 1) ? 0 : 1) + ', OOOIsEmpty(ARGS), ' + (iteration - 1) + ', ' + args + ') OOOPaste(OOOForEach' + argumentCount + '_' + iteration + '_, OOOIsEmpty(ARGS))(MACRO, ARGS)\n';
     contents += '#define OOOForEach' + argumentCount + '_' + (iteration - 1) + '_1(MACRO, ARGS...)\n';
     contents += '\n';
   }   
