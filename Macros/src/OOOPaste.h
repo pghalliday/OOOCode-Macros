@@ -1,7 +1,10 @@
 #ifndef OOOPaste_H
 #define OOOPaste_H
 
-#define _OOOPaste(ARG1,ARG2) ARG1 ## ARG2
-#define OOOPaste(ARG1,ARG2) _OOOPaste(ARG1,ARG2)
+#include "OOOForEach.h"
+#include "OOOSimplePaste.h"
+
+#define _OOOPaste(FIRST,LAST,ITERATION,ARG,REMAINDER) OOOSimplePaste(ARG,REMAINDER)
+#define OOOPaste(ARGS...) OOOForEach(_OOOPaste, 1, ARGS)
 
 #endif

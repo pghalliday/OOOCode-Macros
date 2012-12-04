@@ -5,7 +5,6 @@
 OOOTest(OOOPaste)
 {
 #define HELLO Hello
-	OOOCheck(O_strcmp(OOOQuote(OOOPaste(Hello, Goodbye)), "HelloGoodbye") == 0);
 #define GOODBYE Goodbye
-	OOOCheck(O_strcmp(OOOQuote(OOOPaste(HELLO, GOODBYE)), "HelloGoodbye") == 0);
+	OOOCheck(O_strcmp(OOOQuote(OOOPaste(HELLO, GOODBYE, HELLO, GOODBYE)), "HelloGoodbyeHelloGoodbye") == 0);
 }
