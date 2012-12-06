@@ -27,6 +27,20 @@
 #define COUNT0_1(ARGS...) 0
 #define COUNT(ARGS...) OOOSimplePaste(COUNT0_, OOOIsEmpty(ARGS))(ARGS)
 
+#define SPLIT1_4(ARG0, ARG1, ARG2, ARG3, ARGS...) ARG0, ARG1, ARG2, ARG3
+#define SPLIT1_3(ARG0, ARG1, ARG2, ARGS...) ARG0, ARG1, ARG2
+#define SPLIT1_2(ARG0, ARG1, ARGS...) ARG0, ARG1
+#define SPLIT1_1(ARG0, ARGS...) ARG0
+#define SPLIT1_0(ARGS...)
+#define SPLIT1(COUNT, ARGS...) OOOSimplePaste(SPLIT1_, COUNT)(ARGS)
+
+#define SPLIT2_4(ARG0, ARG1, ARG2, ARG3, ARGS...) SPLIT1(ARGS)
+#define SPLIT2_3(ARG0, ARG1, ARG2, ARGS...) SPLIT1(ARGS)
+#define SPLIT2_2(ARG0, ARG1, ARGS...) SPLIT1(ARGS)
+#define SPLIT2_1(ARG0, ARGS...) SPLIT1(ARGS)
+#define SPLIT2_0(ARGS...) SPLIT1(ARGS)
+#define SPLIT2(COUNT, ARGS...) OOOSimplePaste(SPLIT2_, COUNT)(ARGS)
+
 #define FUNCTION_DECLARE(FIRST, LAST, ITERATION, FUNCTION, REMAINDER) \
 	FUNCTION_DECLARE FUNCTION; REMAINDER
 #define FUNCTIONS_DECLARE(ARGS...) \
@@ -48,10 +62,10 @@
 #define FIRST_TWO(ARG0, ARG1, ARGS...) \
 	ARG0, ARG1
 #define CLASS(ARGS...) \
-	FUNCTIONS_DECLARE(FIRST_TWO(ARGS)) \
-	FIELDS_DECLARE(SECOND_TWO(ARGS)) \
-	FIELDS_IMPLEMENT(SECOND_TWO(ARGS)) \
-	FUNCTIONS_IMPLEMENT(FIRST_TWO(ARGS))
+	FUNCTIONS_DECLARE(SPLIT1(ARGS)) \
+	FIELDS_DECLARE(SPLIT2(ARGS)) \
+	FIELDS_IMPLEMENT(SPLIT2(ARGS)) \
+	FUNCTIONS_IMPLEMENT(SPLIT1(ARGS))
 #define VAR_LIST(ARGS...) COUNT(ARGS), ARGS
 #define FUNCTIONS(ARGS...) VAR_LIST(ARGS)
 #define FIELDS(ARGS...) VAR_LIST(ARGS)
@@ -59,12 +73,14 @@
 OOOTest(OOOMultiVarArg)
 {
 	char * szTest;
+
 	// should handle 2 functions and 2 fields
 	szTest = OOOQuote(CLASS(FUNCTIONS(apple, banana), FIELDS(foo, bar)));
 	if (O_strcmp(TEST_RESULT_2_ARGS, szTest) != 0)
 	{
 		OOOError("expected: %s\nReceived: %s", TEST_RESULT_2_ARGS, szTest);
 	}
+
 	// should handle 3 functions and 2 fields
 	szTest = OOOQuote(CLASS(FUNCTIONS(apple, banana, pear), FIELDS(foo, bar)));
 	if (O_strcmp(TEST_RESULT_VAR_ARGS, szTest) != 0)
