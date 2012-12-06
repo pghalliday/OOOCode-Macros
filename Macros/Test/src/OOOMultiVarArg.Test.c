@@ -80,7 +80,7 @@
 	FUNCTIONS_IMPLEMENT(SHIFT(ARGS))
 #define CLASS2(ARGS...) \
 	FUNCTIONS_DECLARE(SHIFT(ARGS)) \
-	INTERFACES_DECLARE(SHIFT(REMAINDER(REMAINDER(ARGS)))) \
+	INTERFACES_IMPLEMENT(SHIFT(REMAINDER(REMAINDER(ARGS)))) \
 	FIELDS_DECLARE(SHIFT(REMAINDER(ARGS))) \
 	FIELDS_IMPLEMENT(SHIFT(REMAINDER(ARGS))) \
 	FUNCTIONS_IMPLEMENT(SHIFT(ARGS))
@@ -108,9 +108,9 @@ OOOTest(OOOMultiVarArg)
 	}
 
 	// should handle 3 lists
-	szTest = OOOQuote(CLASS(FUNCTIONS(apple, banana, pear), FIELDS(foo, bar), INTERFACES(hello, goodbye)));
-	if (O_strcmp(TEST_RESULT_VAR_ARGS, szTest) != 0)
+	szTest = OOOQuote(CLASS2(FUNCTIONS(apple, banana, pear), FIELDS(foo, bar), INTERFACES(hello, goodbye)));
+	if (O_strcmp(TEST_RESULT_3_LISTS_ARGS, szTest) != 0)
 	{
-		OOOError("expected: %s\nReceived: %s", TEST_RESULT_VAR_ARGS, szTest);
+		OOOError("expected: %s\nReceived: %s", TEST_RESULT_3_LISTS_ARGS, szTest);
 	}
 }
