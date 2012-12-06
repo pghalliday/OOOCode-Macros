@@ -3,3 +3,4 @@
 #include "OOOSimplePaste.Test.h"
 #include "OOOForEach.Test.h"
 #include "OOOPaste.Test.h"
+#include "OOOMultiVarArg.Test.h"

@@ -1,0 +1,74 @@
+#include "OOOUnitTestDefines.h"
+#include "OOOSimplePaste.h"
+#include "OOOQuote.h"
+#include "OOOForEach.h"
+
+#define TEST_RESULT_2_ARGS	\
+	"FUNCTION_DECLARE apple; FUNCTION_DECLARE banana; " \
+	"FIELD_DECLARE foo; FIELD_DECLARE bar; " \
+	"FIELD_IMPLEMENT foo; FIELD_IMPLEMENT bar; " \
+	"FUNCTION_IMPLEMENT apple; FUNCTION_IMPLEMENT banana;"
+
+#define TEST_RESULT_VAR_ARGS	\
+	"FUNCTION_DECLARE apple; FUNCTION_DECLARE banana; FUNCTION_DECLARE pear; " \
+	"FIELD_DECLARE foo; FIELD_DECLARE bar; " \
+	"FIELD_IMPLEMENT foo; FIELD_IMPLEMENT bar; " \
+	"FUNCTION_IMPLEMENT apple; FUNCTION_IMPLEMENT banana; FUNCTION_IMPLEMENT pear;"
+
+#define COUNT4_0(ARG, ARGS...) OOOSimplePaste(COUNT5_, OOOIsEmpty(ARGS))
+#define COUNT4_1(ARGS...) 4
+#define COUNT3_0(ARG, ARGS...) OOOSimplePaste(COUNT4_, OOOIsEmpty(ARGS))
+#define COUNT3_1(ARGS...) 3
+#define COUNT2_0(ARG, ARGS...) OOOSimplePaste(COUNT3_, OOOIsEmpty(ARGS))
+#define COUNT2_1(ARGS...) 2
+#define COUNT1_0(ARG, ARGS...) OOOSimplePaste(COUNT2_, OOOIsEmpty(ARGS))
+#define COUNT1_1(ARGS...) 1
+#define COUNT0_0(ARG, ARGS...) OOOSimplePaste(COUNT1_, OOOIsEmpty(ARGS))
+#define COUNT0_1(ARGS...) 0
+#define COUNT(ARGS...) OOOSimplePaste(COUNT0_, OOOIsEmpty(ARGS))
+
+#define FUNCTION_DECLARE(FIRST, LAST, ITERATION, FUNCTION, REMAINDER) \
+	FUNCTION_DECLARE FUNCTION; REMAINDER
+#define FUNCTIONS_DECLARE(ARGS...) \
+	OOOForEach(FUNCTION_DECLARE, ARGS)
+#define FUNCTION_IMPLEMENT(FIRST, LAST, ITERATION, FUNCTION, REMAINDER) \
+	FUNCTION_IMPLEMENT FUNCTION; REMAINDER
+#define FUNCTIONS_IMPLEMENT(ARGS...) \
+	OOOForEach(FUNCTION_IMPLEMENT, ARGS)
+#define FIELD_DECLARE(FIRST, LAST, ITERATION, FIELD, REMAINDER) \
+	FIELD_DECLARE FIELD; REMAINDER
+#define FIELDS_DECLARE(ARGS...) \
+	OOOForEach(FIELD_DECLARE, ARGS)
+#define FIELD_IMPLEMENT(FIRST, LAST, ITERATION, FIELD, REMAINDER) \
+	FIELD_IMPLEMENT FIELD; REMAINDER
+#define FIELDS_IMPLEMENT(ARGS...) \
+	OOOForEach(FIELD_IMPLEMENT, ARGS)
+#define SECOND_TWO(ARG0, ARG1, ARG2, ARG3, ARGS...) \
+	ARG2, ARG3
+#define FIRST_TWO(ARG0, ARG1, ARGS...) \
+	ARG0, ARG1
+#define CLASS(ARGS...) \
+	FUNCTIONS_DECLARE(FIRST_TWO(ARGS)) \
+	FIELDS_DECLARE(SECOND_TWO(ARGS)) \
+	FIELDS_IMPLEMENT(SECOND_TWO(ARGS)) \
+	FUNCTIONS_IMPLEMENT(FIRST_TWO(ARGS))
+#define VAR_LIST(ARGS...) COUNT(ARGS) ARGS
+#define FUNCTIONS(ARGS...) VAR_LIST(ARGS)
+#define FIELDS(ARGS...) VAR_LIST(ARGS)
+
+OOOTest(OOOMultiVarArg)
+{
+	char * szTest;
+	// should handle 2 functions and 2 fields
+	szTest = OOOQuote(CLASS(FUNCTIONS(apple, banana), FIELDS(foo, bar)));
+	if (O_strcmp(TEST_RESULT_2_ARGS, szTest) != 0)
+	{
+		OOOError("expected: %s\nReceived: %s", TEST_RESULT_2_ARGS, szTest);
+	}
+	// should handle 3 functions and 2 fields
+	szTest = OOOQuote(CLASS(FUNCTIONS(apple, banana, pear), FIELDS(foo, bar)));
+	if (O_strcmp(TEST_RESULT_VAR_ARGS, szTest) != 0)
+	{
+		OOOError("expected: %s\nReceived: %s", TEST_RESULT_VAR_ARGS, szTest);
+	}
+}
