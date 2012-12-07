@@ -15,11 +15,18 @@
 	"FIELD_IMPLEMENT foo; FIELD_IMPLEMENT bar; " \
 	"FUNCTION_IMPLEMENT apple; FUNCTION_IMPLEMENT banana; FUNCTION_IMPLEMENT pear;"
 
-#define TEST_RESULT_3_LISTS_ARGS	\
+#define TEST_RESULT_3_LISTS	\
 	"FUNCTION_DECLARE apple; FUNCTION_DECLARE banana; FUNCTION_DECLARE pear; " \
 	"INTERFACE_IMPLEMENT hello; INTERFACE_IMPLEMENT goodbye; " \
 	"FIELD_DECLARE foo; FIELD_DECLARE bar; " \
 	"FIELD_IMPLEMENT foo; FIELD_IMPLEMENT bar; " \
+	"FUNCTION_IMPLEMENT apple; FUNCTION_IMPLEMENT banana; FUNCTION_IMPLEMENT pear;"
+
+#define TEST_RESULT_EMPTY_LIST	\
+	"FUNCTION_DECLARE apple; FUNCTION_DECLARE banana; FUNCTION_DECLARE pear; " \
+	"INTERFACE_IMPLEMENT hello; INTERFACE_IMPLEMENT goodbye; " \
+	"" \
+	"" \
 	"FUNCTION_IMPLEMENT apple; FUNCTION_IMPLEMENT banana; FUNCTION_IMPLEMENT pear;"
 
 #define _COUNTPaste(ARG1,ARG2) ARG1##ARG2
@@ -109,8 +116,15 @@ OOOTest(OOOMultiVarArg)
 
 	// should handle 3 lists
 	szTest = OOOQuote(CLASS2(FUNCTIONS(apple, banana, pear), FIELDS(foo, bar), INTERFACES(hello, goodbye)));
-	if (O_strcmp(TEST_RESULT_3_LISTS_ARGS, szTest) != 0)
+	if (O_strcmp(TEST_RESULT_3_LISTS, szTest) != 0)
 	{
-		OOOError("expected: %s\nReceived: %s", TEST_RESULT_3_LISTS_ARGS, szTest);
+		OOOError("expected: %s\nReceived: %s", TEST_RESULT_3_LISTS, szTest);
+	}
+
+	// should handle an empty lists
+	szTest = OOOQuote(CLASS2(FUNCTIONS(apple, banana, pear), FIELDS(), INTERFACES(hello, goodbye)));
+	if (O_strcmp(TEST_RESULT_EMPTY_LIST, szTest) != 0)
+	{
+		OOOError("expected: %s\nReceived: %s", TEST_RESULT_EMPTY_LIST, szTest);
 	}
 }
