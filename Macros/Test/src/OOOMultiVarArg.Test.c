@@ -35,11 +35,11 @@
 	"FUNCTION_IMPLEMENT apple; FUNCTION_IMPLEMENT banana; FUNCTION_IMPLEMENT pear;"
 
 #define TEST_RESULT_LISTS_OF_LISTS	\
-	"FUNCTION_DECLARE int add(int nValue); FUNCTION_DECLARE char * toString(void); FUNCTION_DECLARE void request(char * url, char * headers); " \
+	"FUNCTION_DECLARE int add( int nValue); FUNCTION_DECLARE char * toString(void); FUNCTION_DECLARE void request( char * url, char * headers); " \
 	"INTERFACE_IMPLEMENT hello; INTERFACE_IMPLEMENT goodbye; " \
 	"" \
 	"" \
-	"FUNCTION_IMPLEMENT int add(int nValue){}; FUNCTION_IMPLEMENT char * toString(void){}; FUNCTION_IMPLEMENT void request(char * url, char * headers);"
+	"FUNCTION_IMPLEMENT int add( int nValue){}; FUNCTION_IMPLEMENT char * toString(void){}; FUNCTION_IMPLEMENT void request( char * url, char * headers){};"
 
 #define FUNCTION_DECLARE(FIRST, LAST, ITERATION, FUNCTION, REMAINDER...) \
 	FUNCTION_DECLARE FUNCTION; REMAINDER
@@ -70,7 +70,8 @@
 	RETURN NAME(ARGS){}
 #define FUNCTION_IMPLEMENTATION1(RETURN, NAME, ARGS...) \
 	RETURN NAME(void){}
-#define FUNCTION_IMPLEMENTATION(RETURN, NAME, ARGS...) OOOSimplePaste(FUNCTION_IMPLEMENTATION,OOOIsEmpty(ARGS))(RETURN, NAME, ARGS)
+#define _FUNCTION_IMPLEMENTATION(RETURN, NAME, ARGS...) OOOSimplePaste(FUNCTION_IMPLEMENTATION,OOOIsEmpty(ARGS))(RETURN, NAME, ARGS)
+#define FUNCTION_IMPLEMENTATION(ARGS...) _FUNCTION_IMPLEMENTATION(ARGS)
 
 #define FUNCTION2_IMPLEMENT(FIRST, LAST, ITERATION, ARGS...) \
 	FUNCTION_IMPLEMENT FUNCTION_IMPLEMENTATION(OOOPre(ARGS)); OOOPost(ARGS)
@@ -81,7 +82,8 @@
 	RETURN NAME(ARGS)
 #define FUNCTION_PROTOTYPE1(RETURN, NAME, ARGS...) \
 	RETURN NAME(void)
-#define FUNCTION_PROTOTYPE(RETURN, NAME, ARGS...) OOOSimplePaste(FUNCTION_PROTOTYPE,OOOIsEmpty(ARGS))(RETURN, NAME, ARGS)
+#define _FUNCTION_PROTOTYPE(RETURN, NAME, ARGS...) OOOSimplePaste(FUNCTION_PROTOTYPE,OOOIsEmpty(ARGS))(RETURN, NAME, ARGS)
+#define FUNCTION_PROTOTYPE(ARGS...) _FUNCTION_PROTOTYPE(ARGS)
 
 #define FUNCTION2_DECLARE(FIRST, LAST, ITERATION, ARGS...) \
 	FUNCTION_DECLARE FUNCTION_PROTOTYPE(OOOPre(ARGS)); OOOPost(ARGS)
@@ -146,9 +148,9 @@ OOOTest(OOOMultiVarArg)
 	}
 
 	// should handle lists of lists
-//	szTest = OOOQuote(CLASS3(FUNCTIONS(FUNCTION(int, add, int nValue), FUNCTION(char *, toString), FUNCTION(void, request, char * url, char * headers)), FIELDS(), INTERFACES(hello, goodbye)));
-//	if (O_strcmp(TEST_RESULT_EMPTY_LIST, szTest) != 0)
-//	{
-//		OOOError("expected: %s\nReceived: %s", TEST_RESULT_EMPTY_LIST, szTest);
-//	}
+	szTest = OOOQuote(CLASS3(FUNCTIONS(FUNCTION(int, add, int nValue), FUNCTION(char *, toString), FUNCTION(void, request, char * url, char * headers)), FIELDS(), INTERFACES(hello, goodbye)));
+	if (O_strcmp(TEST_RESULT_LISTS_OF_LISTS, szTest) != 0)
+	{
+		OOOError("expected: %s\nReceived: %s", TEST_RESULT_LISTS_OF_LISTS, szTest);
+	}
 }
