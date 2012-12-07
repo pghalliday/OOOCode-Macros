@@ -6,7 +6,8 @@ var ForEachHeader = require('./headers/files/ForEachHeader'),
     CountHeader = require('./headers/files/CountHeader'),
     PreHeader = require('./headers/files/PreHeader'),
     PostHeader = require('./headers/files/PostHeader'),
-    ListHeader = require('./headers/files/ListHeader');
+    ListHeader = require('./headers/files/ListHeader'),
+    ForEachListHeader = require('./headers/files/ForEachListHeader');
 
 var forEachHeader = new ForEachHeader(),
     isEmptyHeader = new IsEmptyHeader(),
@@ -16,7 +17,8 @@ var forEachHeader = new ForEachHeader(),
     countHeader = new CountHeader(),
     preHeader = new PreHeader(),
     postHeader = new PostHeader(),
-    listHeader = new ListHeader();
+    listHeader = new ListHeader(),
+    forEachListHeader = new ForEachListHeader();
 
 forEachHeader.write(function(error) {
   console.log(error || 'ForEach header written');
@@ -44,4 +46,7 @@ postHeader.write(function(error) {
 });
 listHeader.write(function(error) {
   console.log(error || 'List header written');
+});
+forEachListHeader.write(function(error) {
+  console.log(error || 'ForEachList header written');
 });

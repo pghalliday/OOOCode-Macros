@@ -2,9 +2,9 @@ function List(options) {
   var self = this;
   options = options || {};
   options.name = options.name || 'OOOList';
-  options.count = options.count || 'OOOListCount';
-  options.simplePaste = options.simplePaste || 'OOOListSimplePaste';
-  options.isEmpty = options.isEmpty || 'OOOListIsEmpty';
+  options.count = options.count || 'OOOList_Count';
+  options.simplePaste = options.simplePaste || 'OOOList_SimplePaste';
+  options.isEmpty = options.isEmpty || 'OOOList_IsEmpty';
 
   self.name = options.name;
 

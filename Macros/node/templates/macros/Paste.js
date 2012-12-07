@@ -2,8 +2,8 @@ function Paste(options) {
   var self = this;
   options = options || {};
   options.name = options.name || 'OOOPaste';
-  options.forEach = options.forEach || 'OOOPasteForEach';
-  options.simplePaste = options.simplePaste || 'OOOPasteSimplePaste';
+  options.forEach = options.forEach || 'OOOPaste_ForEach';
+  options.simplePaste = options.simplePaste || 'OOOPaste_SimplePaste';
 
   self.name = options.name;
 

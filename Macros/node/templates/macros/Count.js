@@ -7,8 +7,8 @@ function Count(options) {
   options = options || {};
   options.name = options.name || 'OOOCount';
   options.maxArguments = options.maxArguments || 1000;
-  options.simplePaste = options.simplePaste || 'OOOCountSimplePaste';
-  options.isEmpty = options.isEmpty || 'OOOCountIsEmpty';
+  options.simplePaste = options.simplePaste || 'OOOCount_SimplePaste';
+  options.isEmpty = options.isEmpty || 'OOOCount_IsEmpty';
 
   self.name = options.name;
 

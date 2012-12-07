@@ -7,4 +7,5 @@
 #include "OOOPre.Test.h"
 #include "OOOPost.Test.h"
 #include "OOOList.Test.h"
+#include "OOOForEachList.Test.h"
 #include "OOOMultiVarArg.Test.h"
