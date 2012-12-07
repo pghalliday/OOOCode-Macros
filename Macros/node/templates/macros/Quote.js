@@ -7,8 +7,8 @@ function Quote(options) {
 
   var contents = '';
 
-  contents += '#define _' + options.name + '(ARG) #ARG\n';
-  contents += '#define ' + options.name + '(ARG) _' + options.name + '(ARG)\n';
+  contents += '#define _' + options.name + '(ARGS...) #ARGS\n';
+  contents += '#define ' + options.name + '(ARGS...) _' + options.name + '(ARGS)\n';
   contents += '\n';
 
   self.toString = function() {

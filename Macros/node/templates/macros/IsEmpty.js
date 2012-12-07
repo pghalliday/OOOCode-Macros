@@ -43,7 +43,7 @@
 function IsEmpty(options) {
   var self = this;
   options = options || {};
-  options.name = options.name || 'OOOQuote';
+  options.name = options.name || 'OOOIsEmpty';
   options.maxArguments = options.maxArguments || 100;
 
   self.name = options.name;

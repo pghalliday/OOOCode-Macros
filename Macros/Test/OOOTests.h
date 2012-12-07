@@ -3,4 +3,7 @@
 #include "OOOSimplePaste.Test.h"
 #include "OOOForEach.Test.h"
 #include "OOOPaste.Test.h"
+#include "OOOCount.Test.h"
+#include "OOOPre.Test.h"
+#include "OOOPost.Test.h"
 #include "OOOMultiVarArg.Test.h"

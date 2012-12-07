@@ -2,13 +2,19 @@ var ForEachHeader = require('./headers/files/ForEachHeader'),
     IsEmptyHeader = require('./headers/files/IsEmptyHeader'),
     PasteHeader = require('./headers/files/PasteHeader'),
     QuoteHeader = require('./headers/files/QuoteHeader'),
-    SimplePasteHeader = require('./headers/files/SimplePasteHeader');
+    SimplePasteHeader = require('./headers/files/SimplePasteHeader'),
+    CountHeader = require('./headers/files/CountHeader'),
+    PreHeader = require('./headers/files/PreHeader'),
+    PostHeader = require('./headers/files/PostHeader');
 
 var forEachHeader = new ForEachHeader(),
     isEmptyHeader = new IsEmptyHeader(),
     pasteHeader = new PasteHeader(),
     quoteHeader = new QuoteHeader(),
-    simplePasteHeader = new SimplePasteHeader();
+    simplePasteHeader = new SimplePasteHeader(),
+    countHeader = new CountHeader(),
+    preHeader = new PreHeader(),
+    postHeader = new PostHeader();
 
 forEachHeader.write(function(error) {
   console.log(error || 'ForEach header written');
@@ -24,4 +30,13 @@ quoteHeader.write(function(error) {
 });
 simplePasteHeader.write(function(error) {
   console.log(error || 'SimplePaste header written');
+});
+countHeader.write(function(error) {
+  console.log(error || 'Count header written');
+});
+preHeader.write(function(error) {
+  console.log(error || 'Pre header written');
+});
+postHeader.write(function(error) {
+  console.log(error || 'Post header written');
 });
