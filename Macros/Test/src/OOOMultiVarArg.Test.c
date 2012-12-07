@@ -2,6 +2,7 @@
 #include "OOOCount.h"
 #include "OOOPre.h"
 #include "OOOPost.h"
+#include "OOOList.h"
 #include "OOOSimplePaste.h"
 #include "OOOQuote.h"
 #include "OOOForEach.h"
@@ -118,13 +119,10 @@
 	FIELDS_IMPLEMENT(OOOPre(OOOPost(ARGS))) \
 	FUNCTIONS2_IMPLEMENT(OOOPre(ARGS))
 
-#define VARLIST0(ARGS...) OOOCount(ARGS), ARGS
-#define VARLIST1(ARGS...) 0
-#define VARLIST(ARGS...) OOOSimplePaste(VARLIST, OOOIsEmpty(ARGS))(ARGS)
-#define FUNCTIONS(ARGS...) VARLIST(ARGS)
-#define FIELDS(ARGS...) VARLIST(ARGS)
-#define INTERFACES(ARGS...) VARLIST(ARGS)
-#define FUNCTION(ARGS...) VARLIST(ARGS)
+#define FUNCTIONS(ARGS...) OOOList(ARGS)
+#define FIELDS(ARGS...) OOOList(ARGS)
+#define INTERFACES(ARGS...) OOOList(ARGS)
+#define FUNCTION(ARGS...) OOOList(ARGS)
 
 OOOTest(OOOMultiVarArg)
 {

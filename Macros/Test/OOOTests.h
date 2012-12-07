@@ -6,4 +6,5 @@
 #include "OOOCount.Test.h"
 #include "OOOPre.Test.h"
 #include "OOOPost.Test.h"
+#include "OOOList.Test.h"
 #include "OOOMultiVarArg.Test.h"
