@@ -6,31 +6,27 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function ListHeader(options) {
-  options = options || {};
-  options.name = options.name || 'OOOList';
-  options.maxSize = options.maxSize || 1000;
-
   var simplePaste = new SimplePaste({
     name: options.name + '_SimplePaste'
   });
 
   var isEmpty = new IsEmpty({
     name: options.name + '_IsEmpty',
-    maxArguments: options.maxArguments
+    maxArguments: options.maxSize
   });
 
   var count = new Count({
     name: options.name + '_Count',
     maxArguments: options.maxSize,
-    simplePaste: simplePaste.name,
-    isEmpty: isEmpty.name
+    simplePaste: simplePaste,
+    isEmpty: isEmpty
   });
 
   var list = new List({
     name: options.name,
-    simplePaste: simplePaste.name,
-    isEmpty: isEmpty.name,
-    count: count.name
+    simplePaste: simplePaste,
+    isEmpty: isEmpty,
+    count: count
   });
 
   ListHeader.super_.call(this, {

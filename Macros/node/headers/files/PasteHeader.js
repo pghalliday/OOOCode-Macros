@@ -6,10 +6,6 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function PasteHeader(options) {
-  options = options || {};
-  options.maxArguments = options.maxArguments || 100;
-  options.name = options.name || 'OOOPaste';
-
   var simplePaste = new SimplePaste({
     name: options.name + '_SimplePaste'
   });
@@ -22,14 +18,14 @@ function PasteHeader(options) {
   var forEach = new ForEach({
     name: options.name + '_ForEach',
     maxIterations: options.maxArguments,
-    simplePaste: simplePaste.name,
-    isEmpty: isEmpty.name
+    simplePaste: simplePaste,
+    isEmpty: isEmpty
   });
 
   var paste = new Paste({
     name: options.name,
-    simplePaste: simplePaste.name,
-    forEach: forEach.name
+    simplePaste: simplePaste,
+    forEach: forEach
   });
 
   PasteHeader.super_.call(this, {

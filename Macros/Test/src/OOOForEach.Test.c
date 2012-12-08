@@ -2,17 +2,26 @@
 #include "OOOForEach.h"
 #include "OOOQuote.h"
 #include "OOOPaste.h"
+#include "OOOList.h"
 
-#define TEST "hello1_0_0this0_0_1is0_0_2a0_0_3test0_0_4!0_1_5"
-#define QUOTE_WITH_ITERATION(FIRST, LAST, ITERATION, VALUE, REMAINDER) OOOQuote(OOOPaste(VALUE, FIRST, _, LAST, _, ITERATION)) REMAINDER
+#define ON_EACH(FIRST, LAST, ITERATION, VALUE, REMAINDER...) \
+	FIRST LAST ITERATION VALUE REMAINDER
+
+#define TEST \
+	"1 0 0 hello " \
+	"0 0 1 this " \
+	"0 0 2 is " \
+	"0 0 3 a " \
+	"0 0 4 test " \
+	"0 1 5 !"
 
 OOOTest(OOOForEach)
 {
 	char * szTest;
 
-	szTest = OOOForEach(QUOTE_WITH_ITERATION, hello, this, is, a, test, !);
+	szTest = OOOQuote(OOOForEach(ON_EACH, hello, this, is, a, test, !));
 	if (O_strcmp(TEST, szTest) != 0)
 	{
-		OOOError("Expected: %s: Received: %s", TEST, szTest);
+		OOOError("Expected: %s\nReceived: %s", TEST, szTest);
 	}
 }

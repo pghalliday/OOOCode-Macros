@@ -5,10 +5,6 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function CountHeader(options) {
-  options = options || {};
-  options.maxArguments = options.maxArguments || 1000;
-  options.name = options.name || 'OOOCount';
-
   var simplePaste = new SimplePaste({
     name: options.name + '_SimplePaste'
   });
@@ -21,8 +17,8 @@ function CountHeader(options) {
   var count = new Count({
     name: options.name,
     maxArguments: options.maxArguments,
-    simplePaste: simplePaste.name,
-    isEmpty: isEmpty.name
+    simplePaste: simplePaste,
+    isEmpty: isEmpty
   });
 
   CountHeader.super_.call(this, {

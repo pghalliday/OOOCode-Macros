@@ -9,11 +9,6 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function ForEachListHeader(options) {
-  options = options || {};
-  options.maxIterations = options.maxIterations || 100;
-  options.maxSize = options.maxSize || 1000;
-  options.name = options.name || 'OOOForEachList';
-
   var simplePaste = new SimplePaste({
     name: options.name + '_SimplePaste'
   });
@@ -26,15 +21,15 @@ function ForEachListHeader(options) {
   var count = new Count({
     name: options.name + '_Count',
     maxArguments: options.maxSize,
-    simplePaste: simplePaste.name,
-    isEmpty: isEmpty.name
+    simplePaste: simplePaste,
+    isEmpty: isEmpty
   });
 
   var list = new List({
     name: options.name + '_List',
-    simplePaste: simplePaste.name,
-    isEmpty: isEmpty.name,
-    count: count.name
+    simplePaste: simplePaste,
+    isEmpty: isEmpty,
+    count: count
   });
 
   var pre = new Pre({
@@ -50,11 +45,11 @@ function ForEachListHeader(options) {
   var forEachList = new ForEachList({
     name: options.name,
     maxIterations: options.maxIterations,
-    list: list.name,
-    pre: pre.name,
-    post: post.name,
-    simplePaste: simplePaste.name,
-    isEmpty: isEmpty.name
+    list: list,
+    pre: pre,
+    post: post,
+    simplePaste: simplePaste,
+    isEmpty: isEmpty
   });
 
   ForEachListHeader.super_.call(this, {

@@ -3,10 +3,6 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function PostHeader(options) {
-  options = options || {};
-  options.maxArguments = options.maxArguments || 1000;
-  options.name = options.name || 'OOOPost';
-
   var post = new Post({
     name: options.name,
     maxArguments: options.maxArguments

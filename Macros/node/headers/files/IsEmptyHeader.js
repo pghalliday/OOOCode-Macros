@@ -3,10 +3,6 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function IsEmptyHeader(options) {
-  options = options || {};
-  options.maxArguments = options.maxArguments || 100;
-  options.name = options.name || 'OOOIsEmpty';
-
   var isEmpty = new IsEmpty({
     name: options.name,
     maxArguments: options.maxArguments

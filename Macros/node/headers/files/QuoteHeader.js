@@ -3,9 +3,6 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function QuoteHeader(options) {
-  options = options || {};
-  options.name = options.name || 'OOOQuote';
-
   var quote = new Quote({
     name: options.name
   });

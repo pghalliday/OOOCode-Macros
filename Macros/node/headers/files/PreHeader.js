@@ -3,10 +3,6 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function PreHeader(options) {
-  options = options || {};
-  options.maxArguments = options.maxArguments || 1000;
-  options.name = options.name || 'OOOPre';
-
   var pre = new Pre({
     name: options.name,
     maxArguments: options.maxArguments

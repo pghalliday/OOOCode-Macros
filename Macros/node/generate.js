@@ -7,18 +7,59 @@ var ForEachHeader = require('./headers/files/ForEachHeader'),
     PreHeader = require('./headers/files/PreHeader'),
     PostHeader = require('./headers/files/PostHeader'),
     ListHeader = require('./headers/files/ListHeader'),
-    ForEachListHeader = require('./headers/files/ForEachListHeader');
+    ForEachListHeader = require('./headers/files/ForEachListHeader'),
+    AppendArgsHeader = require('./headers/files/AppendArgsHeader');
+    FilterHeader = require('./headers/files/FilterHeader');
 
-var forEachHeader = new ForEachHeader(),
-    isEmptyHeader = new IsEmptyHeader(),
-    pasteHeader = new PasteHeader(),
-    quoteHeader = new QuoteHeader(),
-    simplePasteHeader = new SimplePasteHeader(),
-    countHeader = new CountHeader(),
-    preHeader = new PreHeader(),
-    postHeader = new PostHeader(),
-    listHeader = new ListHeader(),
-    forEachListHeader = new ForEachListHeader();
+var forEachHeader = new ForEachHeader({
+      name: 'OOOForEach',
+      maxIterations: 1000
+    }),
+    isEmptyHeader = new IsEmptyHeader({
+      name: 'OOOIsEmpty',
+      maxArguments: 1000
+    }),
+    pasteHeader = new PasteHeader({
+      name: 'OOOPaste',
+      maxArguments: 1000
+    }),
+    quoteHeader = new QuoteHeader({
+      name: 'OOOSimplePaste'
+    }),
+    simplePasteHeader = new SimplePasteHeader({
+      name: 'OOOSimplePaste'
+    }),
+    countHeader = new CountHeader({
+      name: 'OOOCount',
+      maxArguments: 1000
+    }),
+    preHeader = new PreHeader({
+      name: 'OOOPre',
+      maxArguments: 1000
+    }),
+    postHeader = new PostHeader({
+      name: 'OOOPost',
+      maxArguments: 1000
+    }),
+    listHeader = new ListHeader({
+      name: 'OOOList',
+      maxSize: 1000
+    }),
+    forEachListHeader = new ForEachListHeader({
+      name: 'OOOForEachList',
+      maxIterations: 100,
+      maxSize: 1000
+    }),
+    appendArgsHeader = new AppendArgsHeader({
+      name: 'OOOAppendArgs',
+      maxArguments: 1000
+    }),
+    filterHeader = new FilterHeader({
+      name: 'OOOFilter',
+      maxArguments: 1000,
+      maxIterations: 100,
+      maxLabels: 100
+    });
 
 forEachHeader.write(function(error) {
   console.log(error || 'ForEach header written');
@@ -49,4 +90,10 @@ listHeader.write(function(error) {
 });
 forEachListHeader.write(function(error) {
   console.log(error || 'ForEachList header written');
+});
+appendArgsHeader.write(function(error) {
+  console.log(error || 'AppendArgs header written');
+});
+filterHeader.write(function(error) {
+  console.log(error || 'Filter header written');
 });

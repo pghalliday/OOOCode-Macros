@@ -1,14 +1,11 @@
 function Quote(options) {
   var self = this;
-  options = options || {};
-  options.name = options.name || 'OOOQuote';
-
   self.name = options.name;
 
   var contents = '';
 
-  contents += '#define _' + options.name + '(ARGS...) #ARGS\n';
-  contents += '#define ' + options.name + '(ARGS...) _' + options.name + '(ARGS)\n';
+  contents += '#define _' + self.name + '(ARGS...) #ARGS\n';
+  contents += '#define ' + self.name + '(ARGS...) _' + self.name + '(ARGS)\n';
   contents += '\n';
 
   self.toString = function() {

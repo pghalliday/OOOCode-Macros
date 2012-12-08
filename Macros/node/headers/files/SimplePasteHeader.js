@@ -3,9 +3,6 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function SimplePasteHeader(options) {
-  options = options || {};
-  options.name = options.name || 'OOOSimplePaste';
-
   var simplePaste = new SimplePaste({
     name: options.name
   });

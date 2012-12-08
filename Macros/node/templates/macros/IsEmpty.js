@@ -42,35 +42,31 @@
 
 function IsEmpty(options) {
   var self = this;
-  options = options || {};
-  options.name = options.name || 'OOOIsEmpty';
-  options.maxArguments = options.maxArguments || 100;
-
   self.name = options.name;
 
   var contents = '';
 
-  contents += '#define ' + options.name + '_Arg( \\\n';
+  contents += '#define ' + self.name + '_Arg( \\\n';
   for (var argument = 0; argument < options.maxArguments; argument++) {
     contents += '_' + argument + ', \\\n';    
   }
   contents += 'ARGS...) _' + (options.maxArguments - 1) + '\n';
-  contents += '#define ' + options.name + '_HasComma(ARGS...) ' + options.name + '_Arg(ARGS, \\\n';
+  contents += '#define ' + self.name + '_HasComma(ARGS...) ' + self.name + '_Arg(ARGS, \\\n';
   for (var argument = 0; argument < options.maxArguments - 2; argument++) {
     contents += '1, \\\n';    
   }
   contents += '0, 0)\n';    
   contents += '\n';
-  contents += '#define ' + options.name + '_IsEmptyCase0001 ,\n';
-  contents += '#define ' + options.name + '_Paste5(_0, _1, _2, _3, _4) _0 ## _1 ## _2 ## _3 ## _4\n';
-  contents += '#define _' + options.name + '(_0, _1, _2, _3) ' + options.name + '_HasComma(' + options.name + '_Paste5(' + options.name + '_IsEmptyCase, _0, _1, _2, _3))\n';
-  contents += '#define ' + options.name + '_TriggerParenthesis(ARGS...) ,\n';
-  contents += '#define ' + options.name + '(ARGS...) \\\n';
-  contents += '_' + options.name + '( \\\n';
-  contents += '   ' + options.name + '_HasComma(ARGS), \\\n';
-  contents += '   ' + options.name + '_HasComma(' + options.name + '_TriggerParenthesis ARGS), \\\n';
-  contents += '   ' + options.name + '_HasComma(ARGS (/*empty*/)), \\\n';
-  contents += '   ' + options.name + '_HasComma(' + options.name + '_TriggerParenthesis ARGS (/*empty*/)) \\\n';
+  contents += '#define ' + self.name + '_IsEmptyCase0001 ,\n';
+  contents += '#define ' + self.name + '_Paste5(_0, _1, _2, _3, _4) _0 ## _1 ## _2 ## _3 ## _4\n';
+  contents += '#define _' + self.name + '(_0, _1, _2, _3) ' + self.name + '_HasComma(' + self.name + '_Paste5(' + self.name + '_IsEmptyCase, _0, _1, _2, _3))\n';
+  contents += '#define ' + self.name + '_TriggerParenthesis(ARGS...) ,\n';
+  contents += '#define ' + self.name + '(ARGS...) \\\n';
+  contents += '_' + self.name + '( \\\n';
+  contents += '   ' + self.name + '_HasComma(ARGS), \\\n';
+  contents += '   ' + self.name + '_HasComma(' + self.name + '_TriggerParenthesis ARGS), \\\n';
+  contents += '   ' + self.name + '_HasComma(ARGS (/*empty*/)), \\\n';
+  contents += '   ' + self.name + '_HasComma(' + self.name + '_TriggerParenthesis ARGS (/*empty*/)) \\\n';
   contents += ')\n';
   contents += '\n';
 

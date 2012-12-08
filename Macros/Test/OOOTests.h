@@ -8,4 +8,6 @@
 #include "OOOPost.Test.h"
 #include "OOOList.Test.h"
 #include "OOOForEachList.Test.h"
-#include "OOOMultiVarArg.Test.h"
+#include "OOOFilter.Test.h"
+#include "OOOAppendArgs.Test.h"
+#include "OOONamedArgs.Test.h"

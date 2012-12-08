@@ -5,10 +5,6 @@ var HeaderBase = require('../HeaderBase'),
     util = require('util');
 
 function ForEachHeader(options) {
-  options = options || {};
-  options.maxIterations = options.maxIterations || 100;
-  options.name = options.name || 'OOOForEach';
-
   var simplePaste = new SimplePaste({
     name: options.name + '_SimplePaste'
   });
@@ -21,8 +17,8 @@ function ForEachHeader(options) {
   var forEach = new ForEach({
     name: options.name,
     maxIterations: options.maxIterations,
-    simplePaste: simplePaste.name,
-    isEmpty: isEmpty.name
+    simplePaste: simplePaste,
+    isEmpty: isEmpty
   });
 
   ForEachHeader.super_.call(this, {
