@@ -12,7 +12,8 @@ var ForEachHeader = require('./headers/files/ForEachHeader'),
     FilterHeader = require('./headers/files/FilterHeader'),
     ListAppendHeader = require('./headers/files/ListAppendHeader'),
     PreListHeader = require('./headers/files/PreListHeader'),
-    PostListHeader = require('./headers/files/PostListHeader');
+    PostListHeader = require('./headers/files/PostListHeader'),
+    ForEachClosureHeader = require('./headers/files/ForEachClosureHeader');
 
 var forEachHeader = new ForEachHeader({
       name: 'OOOForEach',
@@ -76,6 +77,11 @@ var forEachHeader = new ForEachHeader({
       name: 'OOOPostList',
       maxSize: 1000,
       maxLists: 100
+    }),
+    forEachClosureHeader = new ForEachClosureHeader({
+      name: 'OOOForEachClosure',
+      maxSize: 1000,
+      maxIterations: 100
     });
 
 forEachHeader.write(function(error) {
@@ -122,4 +128,7 @@ preListHeader.write(function(error) {
 });
 postListHeader.write(function(error) {
   console.log(error || 'PostList header written');
+});
+forEachClosureHeader.write(function(error) {
+  console.log(error || 'ForEachClosure header written');
 });
