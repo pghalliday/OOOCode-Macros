@@ -14,4 +14,4 @@
 #include "OOOPostList.Test.h"
 #include "OOOListAppend.Test.h"
 #include "OOOForEachClosure.Test.h"
-#include "OOONamedArgs.Test.h"
+#include "Integration.Test.h"
