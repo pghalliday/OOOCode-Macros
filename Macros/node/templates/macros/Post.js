@@ -14,7 +14,7 @@ function Post(options) {
   }
   contents += '#define ' + self.name + '0(ARGS...) ARGS\n';
   contents += '#define _' + self.name + '(COUNT, ARGS...) ' + self.name + '##COUNT(ARGS)\n';
-  contents += '#define ' + self.name + '(COUNT, ARGS...) _' + self.name + '(COUNT, ARGS)\n';
+  contents += '#define ' + self.name + '(ARGS...) _' + self.name + '(ARGS)\n';
   contents += '\n';
 
   self.toString = function() {

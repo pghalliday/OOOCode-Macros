@@ -8,8 +8,11 @@ var ForEachHeader = require('./headers/files/ForEachHeader'),
     PostHeader = require('./headers/files/PostHeader'),
     ListHeader = require('./headers/files/ListHeader'),
     ForEachListHeader = require('./headers/files/ForEachListHeader'),
-    AppendArgsHeader = require('./headers/files/AppendArgsHeader');
-    FilterHeader = require('./headers/files/FilterHeader');
+    AppendArgsHeader = require('./headers/files/AppendArgsHeader'),
+    FilterHeader = require('./headers/files/FilterHeader'),
+    ListAppendHeader = require('./headers/files/ListAppendHeader'),
+    PreListHeader = require('./headers/files/PreListHeader'),
+    PostListHeader = require('./headers/files/PostListHeader');
 
 var forEachHeader = new ForEachHeader({
       name: 'OOOForEach',
@@ -59,6 +62,20 @@ var forEachHeader = new ForEachHeader({
       maxArguments: 1000,
       maxIterations: 100,
       maxLabels: 100
+    }),
+    listAppendHeader = new ListAppendHeader({
+      name: 'OOOListAppend',
+      maxSize: 1000
+    }),
+    preListHeader = new PreListHeader({
+      name: 'OOOPreList',
+      maxSize: 1000,
+      maxLists: 100
+    }),
+    postListHeader = new PostListHeader({
+      name: 'OOOPostList',
+      maxSize: 1000,
+      maxLists: 100
     });
 
 forEachHeader.write(function(error) {
@@ -96,4 +113,13 @@ appendArgsHeader.write(function(error) {
 });
 filterHeader.write(function(error) {
   console.log(error || 'Filter header written');
+});
+listAppendHeader.write(function(error) {
+  console.log(error || 'ListAppend header written');
+});
+preListHeader.write(function(error) {
+  console.log(error || 'PreList header written');
+});
+postListHeader.write(function(error) {
+  console.log(error || 'PostList header written');
 });
