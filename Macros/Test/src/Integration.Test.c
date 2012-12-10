@@ -6,6 +6,7 @@
 #include "OOOFilter.h"
 #include "OOOIsEmpty.h"
 #include "OOOForEachClosure.h"
+#include "OOOQuote.h"
 
 #define LABEL_NAME			0
 #define LABEL_CONSTRUCTOR	1
@@ -40,7 +41,6 @@
 	OOOForEachClosure(DECLARE_INTERFACE, OOOList(NAME), ARGS)
 #define CLASS_DESTRUCTOR(NAME) \
 	void OOOSimplePaste(NAME,_destroy)(NAME * pThis);
-
 
 #define _CLASS(NAME, ARGS...) \
 	CLASS_TYPE(NAME) \
@@ -77,7 +77,6 @@ OOOTest(Integration)
 {
 	char * szTest;
 
-	// should handle 2 functions and 2 fields
 	szTest = OOOQuote
 	(
 		CLASS
@@ -88,6 +87,25 @@ OOOTest(Integration)
 			FUNCTION(char *, getString),
 			FUNCTION(void , setValues, int nNumber, char * szString),
 			INTERFACE(MyInterface),
+			INTERFACE(YourInterface)
+		)
+	);
+	if (O_strcmp(TEST_CLASS, szTest) != 0)
+	{
+		OOOError("expected: %s\nReceived: %s", TEST_CLASS, szTest);
+	}
+
+	// should not care what order the elements are specified
+	szTest = OOOQuote
+	(
+		CLASS
+		(
+			INTERFACE(MyInterface),
+			FUNCTION(int, getNumber),
+			FUNCTION(char *, getString),
+			NAME(MyClass),
+			FUNCTION(void , setValues, int nNumber, char * szString),
+			CONSTRUCTOR(int nNumber, char * szString),
 			INTERFACE(YourInterface)
 		)
 	);

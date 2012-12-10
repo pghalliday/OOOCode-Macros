@@ -11,7 +11,8 @@ function PostListHeader(options) {
 
   var post = new Post({
     name: options.name + '_Post',
-    maxArguments: options.maxSize
+    maxArguments: options.maxSize,
+    simplePaste: simplePaste
   });
 
   var postList = new PostList({

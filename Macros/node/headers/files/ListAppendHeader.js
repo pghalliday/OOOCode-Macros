@@ -32,14 +32,17 @@ function ListAppendHeader(options) {
     count: count
   });
 
-  var pre = new Pre({
-    name: options.name + '_Pre',
-    maxArguments: options.maxSize
-  });
-
   var post = new Post({
     name: options.name + '_Post',
-    maxArguments: options.maxSize
+    maxArguments: options.maxSize,
+    simplePaste: simplePaste
+  });
+
+  var pre = new Pre({
+    name: options.name + '_Pre',
+    maxArguments: options.maxSize,
+    simplePaste: simplePaste,
+    post: post
   });
 
   var listAppend = new ListAppend({

@@ -40,14 +40,17 @@ function FilterHeader(options) {
     count: count
   });
 
-  var pre = new Pre({
-    name: options.name + '_Pre',
-    maxArguments: options.maxArguments
-  });
-
   var post = new Post({
     name: options.name + '_Post',
-    maxArguments: options.maxArguments
+    maxArguments: options.maxArguments,
+    simplePaste: simplePaste
+  });
+
+  var pre = new Pre({
+    name: options.name + '_Pre',
+    maxArguments: options.maxArguments,
+    simplePaste: simplePaste,
+    post: post
   });
 
   var forEachList = new ForEachList({
